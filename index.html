@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenue Avril - Jexcel Services</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(-45deg, #0f2027, #2c5364, #00c9a7, #1e3c72);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    max-width: 420px;
+    margin: 30px auto;
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    animation: fadeIn 1.5s ease;
+    position: relative;
+}
+
+/* JEXCEL SERVICES */
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #00ffcc;
+    margin-bottom: 15px;
+    animation: rainbow 4s linear infinite, bounce 2s ease-in-out infinite;
+    font-family: 'Arial Black', sans-serif;
+}
+
+@keyframes bounce {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+}
+
+@keyframes rainbow {
+    0% {color: #ff0000;}
+    20% {color: #ff9900;}
+    40% {color: #ffff00;}
+    60% {color: #00ff00;}
+    80% {color: #00ccff;}
+    100% {color: #ff00ff;}
+}
+
+h1 {
+    color: #00ffcc;
+}
+
+.slogan {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+/* Input */
+input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+/* Buttons */
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #00ffcc, #00cc99);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* WhatsApp button */
+.whatsapp-btn {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: white;
+    margin-left: 10px;
+}
+
+/* Message */
+.message {
+    margin-top: 20px;
+    font-size: 18px;
+    display: none;
+    animation: pop 0.8s ease forwards;
+}
+
+/* Footer */
+.footer {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes pop {
+    0% {transform: scale(0.5); opacity: 0;}
+    100% {transform: scale(1); opacity: 1;}
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: 0;
+    animation: fall 5s linear infinite;
+    z-index: 999;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Texte animé -->
+<div class="title">JEXCEL SERVICES</div>
+
+<h1>🎉 Bienvenue en Avril</h1>
+<div class="slogan">La providence de l'excellence</div>
+
+<p>Entre ton prénom pour recevoir ton message personnalisé</p>
+
+<input type="text" id="name" placeholder="Ton prénom ici">
+<br>
+
+<!-- Boutons -->
+<button onclick="generateMessage()">🎁 Découvrir mon message special pour TOI </button>
+<button class="whatsapp-btn" onclick="openWhatsApp()">💬 WhatsApp</button>
+
+<div class="message" id="result"></div>
+
+<div class="footer">
+📞 +228 90 94 31 27 | 71 39 97 50 | 97 18 58 51 <br>
+<strong>VOTRE AGENCE DE CONSEIL EN MARKETING, COMMUNICATION ET ÉVÉNEMENTIEL.</strong>
+</div>
+
+</div>
+
+<script>
+function generateMessage() {
+    let name = document.getElementById("name").value;
+
+    if (name.trim() === "") {
+        alert("Entre ton prénom !");
+        return;
+    }
+
+    let message = `
+        ✨ Bienvenue en Avril, <b>${name}</b> ! <br><br>
+        🌱 Ce mois est une nouvelle opportunité pour toi de grandir, avancer et réussir. <br>
+        💪 Peu importe comment ton année a commencé, tu peux encore tout changer. <br>
+        🔥 <b>${name}</b>, donne le meilleur de toi-même… le succès t’attend ! <br><br>
+        — Jexcel Services <br>
+        <b>VOTRE AGENCE DE CONSEIL EN MARKETING, COMMUNICATION ET ÉVÉNEMENTIEL.</b>
+    `;
+
+    let resultDiv = document.getElementById("result");
+    resultDiv.style.display = "block";
+    resultDiv.innerHTML = message;
+
+    createConfetti();
+}
+
+// Confetti animé
+function createConfetti() {
+    for (let i = 0; i < 30; i++) {
+        let conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.background = ["#00ffcc","#ffcc00","#ff6699","#66ff66","#ff33cc"][Math.floor(Math.random()*5)];
+        conf.style.width = (5 + Math.random()*10) + "px";
+        conf.style.height = conf.style.width;
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 5000);
+    }
+}
+
+// Ouvrir WhatsApp
+function openWhatsApp() {
+    let url = "https://wa.me/22871399750"; // numéro WhatsApp
+    window.open(url, "_blank");
+}
+
+</script>
+
+</body>
+</html>
